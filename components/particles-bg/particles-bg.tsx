@@ -2,9 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-// Types
-import type { Container } from "@tsparticles/engine";
-
 // Imports
 import { loadSlim } from "@tsparticles/slim";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
@@ -12,11 +9,6 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 const ParticlesBG = () => {
   // States
   const [init, setInit] = useState(false);
-
-  // Functions
-  const particlesLoaded = async (container?: Container) => {
-    console.log(container);
-  };
 
   // Effects
   useEffect(() => {
@@ -32,7 +24,6 @@ const ParticlesBG = () => {
       <Particles
         className="w-full h-full"
         id="particles-bg"
-        particlesLoaded={particlesLoaded}
         options={{
           fullScreen: {
             enable: false,
