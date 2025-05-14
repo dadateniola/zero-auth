@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zero Auth
 
-## Getting Started
+A custom authentication system built from scratch using **Next.js**, **Prisma**, **ShadCN UI**, and **Lucia-inspired patterns**. This project explores the core mechanics of authentication—email/password and OAuth (Google, GitHub)—with full control over sessions and security.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🔥 Why "Zero Auth"?
+
+The name reflects the philosophy of starting from _zero abstractions_. This isn't a plug-and-play auth library. Instead, **Zero Auth** is about understanding and owning every part of your authentication flow—from hashing passwords to integrating OAuth providers.
+
+---
+
+## 🛠️ Stack
+
+- **Framework**: [Next.js (App Router)](https://nextjs.org/)
+- **Database ORM**: [Prisma](https://www.prisma.io/)
+- **UI Components**: [ShadCN UI](https://ui.shadcn.com/)
+- **State & Actions**: [Next.js Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions)
+- **Inspiration**: [Lucia Auth](https://lucia-auth.com/)
+
+---
+
+## ✨ Features
+
+- ✅ Email + Password authentication
+- ✅ Google OAuth login
+- ✅ GitHub OAuth login
+- ✅ Fully custom session management
+- ✅ Database-backed user model (via Prisma)
+- ✅ Form validation using [Zod](https://zod.dev/)
+- 🔐 Built with security-first principles
+
+---
+
+## 🏗️ Project Goals
+
+- Learn how authentication works under the hood
+- Gain full control over auth flows and session storage
+- Create a flexible foundation that can scale with any app
+- Document every step for others to follow or contribute
+
+---
+
+## 📁 Folder Structure (Planned)
+
+```
+/app
+  /auth         → routes and forms for login/signup
+  /api          → auth-related server actions and handlers
+  /dashboard    → protected routes
+/prisma
+  schema.prisma → user/session models
+/lib
+  auth.ts       → auth logic (session handling, token validation)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Coming Soon
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Password reset
+- Email verification
+- OAuth UI theming
+- Session expiration policies
+- Provider linking (Google + Email, etc.)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧠 Inspired By
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Lucia Auth Docs](https://lucia-auth.com/)
+- [NextAuth](https://next-auth.js.org/) — but simpler and more hands-on
+- Security principles from OWASP
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧹 Want to Contribute?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is primarily for learning, but feedback and PRs are welcome as it grows into a full-fledged starter kit.
