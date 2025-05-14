@@ -43,8 +43,8 @@ const Home = () => {
             <Divider direction="horizontal" className="flex-1" />
           </div>
           <div className="custom-flex-col gap-3">
-            <Button asChild size={"lg"} className="gap-4 cursor-not-allowed">
-              <Link href={""}>
+            <Button asChild size={"lg"} className="gap-4">
+              <Link href={"/auth/sign-up"}>
                 <Mail />
                 Sign up with Email
               </Link>
@@ -52,10 +52,10 @@ const Home = () => {
             <p className="text-sm text-center">
               Already have an account?{" "}
               <Link
-                href={""}
+                href={"/auth/sign-in"}
                 className="text-[#828a9a] font-medium hover:underline"
               >
-                Log in
+                Sign In
               </Link>
             </p>
           </div>

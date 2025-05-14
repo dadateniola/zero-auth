@@ -2,13 +2,27 @@
 
 import React, { useEffect, useState } from "react";
 
+// Types
+import type { ParticlesBGProps } from "./types";
+import type { Container } from "@tsparticles/engine";
+
 // Imports
+import clsx from "clsx";
 import { loadSlim } from "@tsparticles/slim";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 
-const ParticlesBG = () => {
+const ParticlesBG: React.FC<ParticlesBGProps> = ({
+  linkColor = "#374151",
+  particleNumber = 80,
+}) => {
   // States
   const [init, setInit] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  // Functions
+  const particlesLoaded = async (container?: Container) => {
+    if (container) setLoaded(true);
+  };
 
   // Effects
   useEffect(() => {
@@ -22,15 +36,20 @@ const ParticlesBG = () => {
   return (
     init && (
       <Particles
-        className="w-full h-full"
+        className={clsx(
+          "w-full h-full",
+          "transition-all duration-500 ease-out",
+          !loaded && "opacity-0 scale-50"
+        )}
         id="particles-bg"
+        particlesLoaded={particlesLoaded}
         options={{
           fullScreen: {
             enable: false,
             zIndex: 0,
           },
           detectRetina: true,
-          fpsLimit: 120,
+          fpsLimit: 60,
           interactivity: {
             events: {
               onClick: {
@@ -78,10 +97,8 @@ const ParticlesBG = () => {
             number: {
               density: {
                 enable: true,
-                width: 1920,
-                height: 1080,
               },
-              value: 80,
+              value: particleNumber,
             },
             opacity: {
               value: 0.5,
@@ -97,7 +114,7 @@ const ParticlesBG = () => {
             },
             links: {
               color: {
-                value: "#374151",
+                value: linkColor,
               },
               distance: 150,
               enable: true,

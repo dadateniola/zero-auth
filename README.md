@@ -44,14 +44,53 @@ The name reflects the philosophy of starting from _zero abstractions_. This isn'
 ## 📁 Folder Structure (Planned)
 
 ```
-/app
-  /auth         → routes and forms for login/signup
-  /api          → auth-related server actions and handlers
-  /dashboard    → protected routes
-/prisma
-  schema.prisma → user/session models
-/lib
-  auth.ts       → auth logic (session handling, token validation)
+/zero-auth
+│
+├── /app
+│   ├── /auth
+│   │   ├── /login
+│   │   │   └── page.tsx        # Login form (email/password + OAuth buttons)
+│   │   ├── /register
+│   │   │   └── page.tsx        # Registration form
+│   │   ├── /callback
+│   │   │   └── page.tsx        # OAuth redirect handler
+│   │   └── /logout
+│   │       └── action.ts       # Logout server action
+│   │
+│   ├── /dashboard
+│   │   └── page.tsx            # Protected page shown after login
+│   │
+│   ├── /api
+│   │   ├── /auth
+│   │   │   └── /[provider]/route.ts  # OAuth redirect endpoints (e.g., Google, GitHub)
+│   │
+│   ├── /middleware.ts          # Auth protection middleware
+│   └── page.tsx                # Home/landing page
+│
+├── /components
+│   ├── AuthForm.tsx            # Reusable login/register form
+│   ├── OAuthButtons.tsx        # Google/GitHub login buttons
+│   ├── Navbar.tsx              # Top nav with auth status
+│   └── ProtectedRoute.tsx      # Optional component-level guard
+│
+├── /lib
+│   ├── auth.ts                 # Core logic: Lucia, OAuth config, session handling
+│   ├── prisma.ts               # Prisma client
+│   ├── validators.ts           # Zod validation schemas
+│   └── utils.ts                # Miscellaneous utilities
+│
+├── /styles
+│   └── globals.css             # Base styles + ShadCN integration
+│
+├── /prisma
+│   └── schema.prisma           # DB schema (User, Session, etc.)
+│
+├── /public                     # Public assets (e.g., logos)
+│
+├── .env.local                  # Environment variables (API keys, secrets)
+├── next.config.js              # Next.js config
+├── tailwind.config.ts          # Tailwind setup
+└── README.md                   # Project overview and setup
 ```
 
 ---
