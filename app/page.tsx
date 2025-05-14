@@ -13,11 +13,11 @@ import ParticlesBG from "@/components/particles-bg/particles-bg";
 
 const Home = () => {
   return (
-    <div className="relative">
+    <div className="relative w-full h-screen overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <ParticlesBG />
       </div>
-      <main className="relative w-full h-screen custom-flex-center">
+      <main className="relative w-full h-full custom-flex-center">
         <div className="w-[95vw] max-w-[350px] custom-flex-col gap-5">
           <div className="custom-flex-col gap-3">
             <Button
