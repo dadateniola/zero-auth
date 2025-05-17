@@ -13,7 +13,7 @@ import {
 } from "@oslojs/encoding";
 
 import prisma from "./prisma";
-import { Session } from "@/app/generated/prisma";
+import { Session } from "@prisma/client";
 
 // Functions
 export function generateSessionToken(): string {

@@ -1,3 +1,5 @@
+import { FieldError } from "react-hook-form";
+
 export interface AuthRedirectProps {
   text: string;
   link: {
@@ -8,4 +10,8 @@ export interface AuthRedirectProps {
 
 export interface AuthWrapperProps {
   children: React.ReactNode;
+}
+
+export interface AuthValidationTextProps {
+  text?: FieldError;
 }

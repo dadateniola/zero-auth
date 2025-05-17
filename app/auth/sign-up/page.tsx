@@ -1,14 +1,13 @@
 import React from "react";
 
-// Imports
+// Images
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 // Imports
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { OrDivider, AuthRedirect } from "@/components/auth/auth-components";
+import { OrDivider } from "@/components/auth/auth-components";
+import SignUpForm from "@/components/auth/sign-up/sign-up-form";
 
 const SignUp = () => {
   return (
@@ -34,38 +33,7 @@ const SignUp = () => {
           </Button>
         </div>
         <OrDivider />
-        <div className="custom-flex-col gap-2">
-          <Label htmlFor="name">Name</Label>
-          <Input type="text" id="name" name="name" placeholder="Dada Teniola" />
-        </div>
-        <div className="custom-flex-col gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="example@gmail.com"
-          />
-        </div>
-        <div className="custom-flex-col gap-2">
-          <Label htmlFor="email">Password</Label>
-          <Input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="••••••••"
-          />
-        </div>
-        <div className="custom-flex-col gap-3">
-          <Button size={"lg"}>Sign Up</Button>
-          <AuthRedirect
-            text="Already have an account?"
-            link={{
-              text: "Sign In",
-              href: "/auth/sign-in",
-            }}
-          />
-        </div>
+        <SignUpForm />
       </div>
     </div>
   );

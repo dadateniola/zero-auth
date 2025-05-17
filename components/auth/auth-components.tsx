@@ -1,7 +1,11 @@
 import Link from "next/link";
 
 // Types
-import { AuthRedirectProps, AuthWrapperProps } from "./types";
+import {
+  AuthRedirectProps,
+  AuthValidationTextProps,
+  AuthWrapperProps,
+} from "./types";
 
 // Imports
 import Divider from "../divider/divider";
@@ -43,3 +47,7 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => (
     <div className="col-span-3 custom-flex-center">{children}</div>
   </main>
 );
+
+export const AuthValidationText: React.FC<AuthValidationTextProps> = ({
+  text,
+}) => text && <p className="text-red-500 text-sm">{text.message}</p>;
