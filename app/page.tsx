@@ -50,7 +50,7 @@ const Home = async () => {
           </div>
           <div className="custom-flex-col gap-3">
             <Button asChild size={"lg"} className="gap-4">
-              <Link href={"/auth/sign-up"}>
+              <Link href={"/auth/signup"}>
                 <Mail />
                 Sign up with Email
               </Link>
@@ -58,7 +58,7 @@ const Home = async () => {
             <p className="text-sm text-center">
               Already have an account?{" "}
               <Link
-                href={"/auth/sign-in"}
+                href={"/auth/signin"}
                 className="text-[#828a9a] font-medium hover:underline"
               >
                 Sign In

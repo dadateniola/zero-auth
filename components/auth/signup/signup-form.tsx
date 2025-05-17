@@ -11,9 +11,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { objectToFormData } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { signupAction } from "@/actions/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signinAction } from "@/app/auth/sign-in/actions";
-import { SigninSchema, signinSchema } from "@/lib/validators";
+import { SignupSchema, signupSchema } from "@/lib/validators";
 import { AuthRedirect, AuthValidationText } from "../auth-components";
 
 // Constants
@@ -23,26 +23,35 @@ const ICON_PROPS = {
   strokeWidth: 1.5,
 };
 
-const SignInForm = () => {
+const SignUpForm = () => {
   // Hooks
   const {
     register,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(signinSchema),
+    resolver: zodResolver(signupSchema),
   });
 
   // States
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  // Functions
-  const onSubmit = async (data: SigninSchema) => {
+  // Functinons
+  const formatName = (name: string) => {
+    return name
+      .split(" ")
+      .filter(Boolean)
+      .map((word) => word[0]?.toUpperCase() + word?.slice(1).toLowerCase())
+      .join(" ");
+  };
+
+  const onSubmit = async (data: SignupSchema) => {
     setLoading(true);
     try {
       const formData = objectToFormData(data);
-      const result = await signinAction(formData);
+      const result = await signupAction(formData);
       console.warn(result.message);
     } finally {
       setLoading(false);
@@ -51,6 +60,20 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="custom-flex-col gap-5">
+      <div className="custom-flex-col gap-2">
+        <Label htmlFor="name">Name</Label>
+        <Input
+          id="name"
+          type="text"
+          {...register("name")}
+          placeholder="Dada Teniola"
+          onBlur={(e) => {
+            const formatted = formatName(e.target.value);
+            setValue("name", formatted);
+          }}
+        />
+        <AuthValidationText text={errors.name} />
+      </div>
       <div className="custom-flex-col gap-2">
         <Label htmlFor="email">Email</Label>
         <Input
@@ -89,17 +112,17 @@ const SignInForm = () => {
           {loading ? (
             <>
               <Loader className="animate-spin" />
-              Signing you in...
+              Signing you up...
             </>
           ) : (
-            "Sign In"
+            "Sign Up"
           )}
         </Button>
         <AuthRedirect
           text="Already have an account?"
           link={{
-            text: "Sign Up",
-            href: "/auth/sign-up",
+            text: "Sign In",
+            href: "/auth/signin",
           }}
         />
       </div>
@@ -107,4 +130,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

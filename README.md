@@ -48,49 +48,57 @@ The name reflects the philosophy of starting from _zero abstractions_. This isn'
 │
 ├── /app
 │   ├── /auth
-│   │   ├── /login
-│   │   │   └── page.tsx        # Login form (email/password + OAuth buttons)
-│   │   ├── /register
-│   │   │   └── page.tsx        # Registration form
-│   │   ├── /callback
-│   │   │   └── page.tsx        # OAuth redirect handler
-│   │   └── /logout
-│   │       └── action.ts       # Logout server action
+│   │   ├── /signin              # Sign-in page and form
+│   │   ├── /signup              # Sign-up page and form
+│   │   └── layout.tsx          # Layout for auth routes (e.g., center form, hide navbar)
 │   │
-│   ├── /dashboard
-│   │   └── page.tsx            # Protected page shown after login
-│   │
-│   ├── /api
-│   │   ├── /auth
-│   │   │   └── /[provider]/route.ts  # OAuth redirect endpoints (e.g., Google, GitHub)
-│   │
-│   ├── /middleware.ts          # Auth protection middleware
-│   └── page.tsx                # Home/landing page
+│   ├── /success                # Post-auth success screen
+│   ├── /middleware.ts          # Middleware for route protection
+│   ├── /layout.tsx             # Root layout (providers, html/body)
+│   ├── /page.tsx               # Landing or homepage
+│   └── /favicon.ico            # App icon
+│
+├── /actions
+│   ├── /auth                   # Server actions related to authentication
+│   │   ├── signin.ts
+│   │   ├── signup.ts
+│   │   └── logout.ts
+│   └── /[feature]              # (Optional) Group actions by route or feature
 │
 ├── /components
-│   ├── AuthForm.tsx            # Reusable login/register form
-│   ├── OAuthButtons.tsx        # Google/GitHub login buttons
-│   ├── Navbar.tsx              # Top nav with auth status
-│   └── ProtectedRoute.tsx      # Optional component-level guard
+│   ├── /auth
+│   │   ├── auth-components.tsx # Shared auth logic or wrappers
+│   │   ├── /signin             # Signin form component
+│   │   ├── /signup             # Signup form component
+│   │   └── /logout             # Logout form button
+│   │
+│   ├── /divider                # Decorative divider component
+│   ├── /particles-bg           # Optional animated background
+│   └── /ui                     # Shared UI primitives (button, input, label)
 │
 ├── /lib
-│   ├── auth.ts                 # Core logic: Lucia, OAuth config, session handling
-│   ├── prisma.ts               # Prisma client
-│   ├── validators.ts           # Zod validation schemas
-│   └── utils.ts                # Miscellaneous utilities
-│
-├── /styles
-│   └── globals.css             # Base styles + ShadCN integration
+│   ├── prisma.ts               # Prisma client singleton
+│   ├── session.ts              # Session management (e.g., Lucia helpers)
+│   ├── email.ts                # Email validation or helpers
+│   ├── password.ts             # Password hashing, validation
+│   ├── validators.ts           # Zod schemas for input validation
+│   ├── user.ts                 # User helpers (create/find user)
+│   └── utils.ts                # Miscellaneous helpers
 │
 ├── /prisma
-│   └── schema.prisma           # DB schema (User, Session, etc.)
+│   ├── schema.prisma           # Prisma schema definition
+│   └── /migrations             # Generated Prisma migration files
 │
-├── /public                     # Public assets (e.g., logos)
+├── /public                     # Static assets (e.g., images, icons)
 │
-├── .env.local                  # Environment variables (API keys, secrets)
-├── next.config.js              # Next.js config
-├── tailwind.config.ts          # Tailwind setup
-└── README.md                   # Project overview and setup
+├── .env                        # Environment variables
+├── .gitignore                  # Ignored files and folders
+├── next.config.ts             # Next.js config (App Router, experimental opts)
+├── tsconfig.json              # TypeScript settings
+├── postcss.config.mjs         # PostCSS for Tailwind
+├── eslint.config.mjs          # Linting rules
+├── package.json               # Project dependencies and scripts
+└── README.md                  # Project overview and setup instructions
 ```
 
 ---
