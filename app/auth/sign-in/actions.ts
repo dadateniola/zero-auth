@@ -3,9 +3,9 @@
 import { redirect } from "next/navigation";
 
 // Imports
-import { createUser } from "@/lib/user";
-import { signupSchema } from "@/lib/validators";
-import { checkEmailAvailability } from "@/lib/email";
+import { getUserByEmail } from "@/lib/user";
+import { signinSchema } from "@/lib/validators";
+import { verifyPasswordHash } from "@/lib/password";
 
 import {
   createSession,
@@ -13,20 +13,19 @@ import {
   setSessionTokenCookie,
 } from "@/lib/session";
 
-interface SignupActionResult {
+interface SigninActionResult {
   message?: string;
 }
 
-export async function signupAction(
+export async function signinAction(
   formData: FormData
-): Promise<SignupActionResult> {
+): Promise<SigninActionResult> {
   const raw = {
-    name: formData.get("name"),
     email: formData.get("email"),
     password: formData.get("password"),
   };
 
-  const result = signupSchema.safeParse(raw);
+  const result = signinSchema.safeParse(raw);
   if (!result.success) {
     const error = result.error.flatten().fieldErrors;
     return {
@@ -34,12 +33,16 @@ export async function signupAction(
     };
   }
 
-  const { name, email, password } = result.data;
+  const { email, password } = result.data;
 
-  const emailAvailable = await checkEmailAvailability(email);
-  if (!emailAvailable) return { message: "Email already in use" };
+  const user = await getUserByEmail(email);
+  if (!user) return { message: "Account does not exist" };
 
-  const user = await createUser(name, email, password);
+  const isValidPassword = await verifyPasswordHash(
+    user.password_hash,
+    password
+  );
+  if (!isValidPassword) return { message: "Invalid password" };
 
   const sessionToken = await generateSessionToken();
   const session = await createSession(sessionToken, user.id);

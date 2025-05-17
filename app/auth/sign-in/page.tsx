@@ -5,10 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 // Imports
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { OrDivider, AuthRedirect } from "@/components/auth/auth-components";
+import { OrDivider } from "@/components/auth/auth-components";
+import SignInForm from "@/components/auth/sign-in/sign-in-form";
 
 const SignIn = () => {
   return (
@@ -34,34 +33,7 @@ const SignIn = () => {
           </Button>
         </div>
         <OrDivider />
-        <div className="custom-flex-col gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="example@gmail.com"
-          />
-        </div>
-        <div className="custom-flex-col gap-2">
-          <Label htmlFor="email">Password</Label>
-          <Input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="••••••••"
-          />
-        </div>
-        <div className="custom-flex-col gap-3">
-          <Button size={"lg"}>Sign In</Button>
-          <AuthRedirect
-            text="Already have an account?"
-            link={{
-              text: "Sign Up",
-              href: "/auth/sign-up",
-            }}
-          />
-        </div>
+        <SignInForm />
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ const LogoutForm: React.FC = () => {
       type="submit"
       size={"lg"}
       variant={"destructive"}
-      className="cursor-pointer"
       disabled={pending}
     >
       {pending ? (
