@@ -19,8 +19,10 @@ const Success = async () => {
       </div>
       <div className="relative w-full h-full custom-flex-center">
         <div className="custom-flex-col gap-5 text-center">
-          <h1 className="text-3xl font-normal">Sign up successful 🥳</h1>
-          <p className="text-lg font-medium">Welcome {user.name}</p>
+          <h1 className="text-3xl">
+            You are logged in successfully
+          </h1>
+          <p className="text-lg">Welcome {user.name}</p>
 
           {/* Logout form */}
           <form action={logoutAction}>

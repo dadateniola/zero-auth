@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 // Images
 import { Mail } from "lucide-react";
@@ -8,10 +9,15 @@ import { FaGithub } from "react-icons/fa";
 
 // Imports
 import { Button } from "@/components/ui/button";
+import { getCurrentSession } from "@/lib/session";
 import Divider from "@/components/divider/divider";
 import ParticlesBG from "@/components/particles-bg/particles-bg";
 
-const Home = () => {
+const Home = async () => {
+  const { session } = await getCurrentSession();
+
+  if (session) redirect("/success");
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
