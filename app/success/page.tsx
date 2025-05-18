@@ -1,14 +1,17 @@
+"use client";
+
 import React from "react";
 import { redirect } from "next/navigation";
 
 // Imports
-import { getCurrentSession } from "@/lib/session";
 import { logoutAction } from "@/actions/auth/logout";
 import LogoutForm from "@/components/auth/logout/logout-form";
 import ParticlesBG from "@/components/particles-bg/particles-bg";
+import { useAuthContext } from "@/components/providers/auth-context";
 
-const Success = async () => {
-  const { user, session } = await getCurrentSession();
+const Success = () => {
+  // Hooks
+  const { user, session } = useAuthContext();
 
   if (session === null) return redirect("/auth/signin");
 
